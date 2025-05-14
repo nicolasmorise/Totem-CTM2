@@ -1,0 +1,132 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Style the container to fill the screen */
+.video_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Same as Option 1 (focus center of video) */
+#bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+  #transitionVideo{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;  /* Adjust width and height to your desired container size */
+    height: 100%;
+    object-fit: cover;         /* Keeps aspect ratio and fills the container */
+    object-position: center;   /* Focus on the center */
+    z-index: -1; 
+  }
+
+  
+  .content {
+    position: absolute;
+    top: 55%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    color: white;
+    z-index: 3;
+    text-shadow: 10px 10px 10px black;
+  }
+
+  .content h1{
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  
+  .content button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .languages {
+    position: absolute;
+    top: 74%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 3;
+    text-shadow: 10px 10px 10px black;
+  }
+  .languages h2{
+    font-family: 'Monterchi Sans Trial', sans-serif;
+  }
+
+  .languagesbtn {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .lgn-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .lgn-btn:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .mainBtn{
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .mainBtn:hover{
+    background-color: white;
+    color: black;
+  }
+  
+  .bottom-gradient {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, rgba(28, 71, 109, 0.9), transparent);
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .map-img {
+    width: 100%;
+    height: auto;
+  }
+  
