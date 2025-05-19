@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Load mission data from JSON file
         async function loadMissionData() {
             try {
-                const response = await fetch('src/js/data.json');
+                const response = await fetch('../js/data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 
@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Function to display mission details
         function showMissionDetails(mission) {
+            currentMission = mission;
+
             countryTitle.textContent = `Missão: ${mission.Missões || 'Não especificada'}`;
             areaName.textContent = mission["Áreas"] || 'Área não especificada';
             
@@ -147,4 +149,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         errorDiv.textContent = 'Ocorreu um erro ao carregar o mapa. Por favor, recarregue a página.';
         document.body.prepend(errorDiv);
     }
+});
+
+const moreInfoBtn = document.getElementById('moreInfoBtn');
+const modal = document.getElementById('countryModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const modalTitle = document.getElementById('modalTitle');
+const modalDescription = document.getElementById('modalDescription');
+const modalContent = document.getElementById('modal-content')
+
+let currentMission = null; // Armazena missão atual para mostrar dados
+
+// Quando clicar no botão "Saiba mais sobre este país"
+moreInfoBtn.addEventListener('click', () => {
+  if (!currentMission) return;
+
+  modalTitle.textContent = currentMission["Áreas"] || "Informações do país";
+  modalDescription.innerHTML = currentMission["Country Description"] || "Sem descrição disponível.";
+  modalContent.innerHTML = `
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img id="countryFlag" src="${currentMission['Flag URL']}" alt="Flag of Country" style="width: 120px; height: auto; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+    <div id="countryDescriptionText">${currentMission["Country Description"] || "No description available."}</div>
+  </div>
+`;
+
+  modal.style.display = "block";
+});
+
+// Fechar modal ao clicar no "X"
+closeModalBtn.addEventListener('click', () => {
+  modal.style.display = "none";
+});
+
+// Fechar modal ao clicar fora do conteúdo
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
 });

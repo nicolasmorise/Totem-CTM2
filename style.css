@@ -56,40 +56,36 @@ svg path:hover {
     fill: #FFD700 !important;
 }
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    display: none;
-    z-index: 1000;
+#modalOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .missoes-container {
-position: fixed;
-bottom: -100%;
-left: 50%;
-transform: translateX(-50%);
-width: 90%;
-max-width: 800px;
-max-height: 70vh; /* Limit height to 70% of viewport */
-background: rgba(28, 71, 109, 0.95);
-border-radius: 20px 20px 0 0;
-box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
-z-index: 1001;
-transition: bottom 0.5s ease-out;
-padding: 1.5rem;
-border: 1px solid rgba(255, 255, 255, 0.2);
-overflow-y: auto; /* Enable vertical scrolling */
-display: flex;
-flex-direction: column;
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 900px;
+  max-height: 80vh;
+  background: #148a79;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  padding: 2rem;
+  overflow-y: auto;
+  color: white;
+  flex-direction: row;
+  gap: 2rem;
 }
 
 .missoes-container.show {
-bottom: 0;
+  display: flex;
 }
 
 /* Mission list styling */
@@ -143,19 +139,23 @@ font-size: small;
 
 
 .mission-info {
-margin-bottom: 0.5rem;
-line-height: 1.5;
-padding: 20px;
+  flex: 2;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-y: auto;
+  max-height: 300px; /* or whatever height fits your layout */
+  padding-right: 0.5rem; /* optional: space so text doesn't go under scrollbar */
 }
 
 .mission-info strong {
 color: #FFD700;
 }
 
-.mission-photo{
-max-width: 100%;
-max-height: 100%;
-padding: 20px;
+.mission-photo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mission-photo h2{
@@ -163,10 +163,11 @@ text-align: center;
 text-transform: uppercase;
 }
 
-#missionphoto{
-border-radius: 20%;
-width: 300px;
-height: 300px;
+#missionphoto {
+  border-radius: 20px;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Header styling */
@@ -222,35 +223,102 @@ background: rgba(255, 255, 255, 0.4);
 }
 
 
-.container{
+.container {
     position: relative;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center;     /* Vertical centering */
+    height: 100vh;           /* Or any specific height */
 }
 
-.container svg{
-    display: block;
-    width: 70%;
-    height: 70%;
-    
-    margin-left: auto;
-    margin-right: auto;
-    top: 0;
+.container svg {
+    width:65%;
+    max-width: 80%;
 }
 
-.container img{
+
+.mtc-photo {
     position: absolute;
-    top: 90%;
-    left: 2%;
-    width: 100px;
+    top: 75%;
+    left: 5%;
+    width: 90%;       /* Responsive width of the container */
+    max-width: 700px; /* Prevents it from getting too large */
     height: auto;
 }
 
-.container h1{
+.mtc-photo img {
     position: absolute;
-    left: 520px;
+    width: 10vw;      /* Image takes up 100% of the container's width */
+    height: auto;     /* Maintains aspect ratio */
+      /* Removes inline spacing below image */
+}
+
+
+.text h1 {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+
     font-family: 'Monterchi Sans Trial', sans-serif;
     color: white;
     text-shadow: 1px 1px 2px black;
+    font-size: 3vw; /* responsive font size */
+    margin: 0;
+    text-align: center;
+    max-width: 90%;
+    line-height: 1.2;
 }
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 2rem;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.close-modal:hover {
+  color: #000;
+}
+
+.info-btn {
+  margin-top: 1rem;
+  background-color: #148a79;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 
 body{
     background: rgb(28,71,109);
@@ -265,4 +333,19 @@ svg path{
 
 svg path:hover{
     fill:black;
+}
+
+#modal-content img#countryFlag {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#countryDescriptionText {
+  text-align: justify;
+  max-width: 500px;
+  font-size: 1rem;
+  color: #333;
 }
