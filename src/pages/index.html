@@ -416,6 +416,11 @@
     </g>
     </svg>
     </div>
+    <div class="language-buttons">
+        <button id="lang-en">English</button>
+        <button id="lang-pt">Português</button>
+        <button id="lang-es">Español</button>
+    </div>
     <div class="mtc-photo">
         <img src="../../public/images/image-removebg-preview.png" alt="CTM Logo" id="ctm_logo">
     </div>
@@ -425,8 +430,8 @@
     <div class="modal-overlay" id="modalOverlay"></div>
     
     <div class="missoes-container" id="missoesContainer">
-        <button class="close-btn" id="closeBtn">×</button>
         <h2 id="countryTitle"><span id="areaName"></span></h2>
+        <button class="close-btn" id="closeBtn">×</button>
         <div class="box">
             <div id="missionDetails">
                 <!-- Mission details will be inserted here -->
@@ -444,6 +449,14 @@
     <p id="modalDescription"></p>
   </div>
 </div>
+
+<div id="loading-screen">
+    <div class="loading-spinner"></div>
+    <p>Loading language data...</p>
+</div>
+
+
+<script src="../js/allowedCountries.js"></script>
 <script src="../js/leitura.js" defer></script>
 </body>
 </html>

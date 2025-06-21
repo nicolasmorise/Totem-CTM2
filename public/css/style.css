@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif
   }
 
   /* Style the container to fill the screen */
@@ -40,73 +41,40 @@ body, html {
 
   
   .content {
-    position: absolute;
-    top: 55%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    text-align: left;
-    color: white;
-    z-index: 3;
-    text-shadow: 10px 10px 10px black;
-  }
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 2;
+  text-shadow: 4px 4px 8px black;
+}
 
-  .content h1{
-    font-size: 3em;
-    margin-bottom: 10px;
-  }
+.content h1 {
+  margin: 0;
+  font-size: 3.5em;
+  font-weight: 600;
+}
 
-  
-  .content button {
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-  }
+.content h1.highlight {
+  font-size: 5em;
+  font-weight: bold;
+}
 
-  .languages {
-    position: absolute;
-    top: 74%;
-    left: 85%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 3;
-    text-shadow: 10px 10px 10px black;
-  }
-  .languages h2{
-    font-family: 'Monterchi Sans Trial', sans-serif;
-  }
+.content .sub {
+  font-size: 4.2em;
+  margin: 20px 0;
+}
 
-  .languagesbtn {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .lgn-btn {
+  .mainBtn {
     background: transparent;
     border: 2px solid white;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 30px;
-    font-size: 1rem;
+    font-size: 3rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .lgn-btn:hover {
-    background-color: white;
-    color: black;
-  }
-
-  .mainBtn{
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
+    transition: 0.3s ease;
   }
 
   .mainBtn:hover{
@@ -121,7 +89,7 @@ body, html {
     width: 100%;
     height: 70%;
     background: linear-gradient(to top, rgba(28, 71, 109, 0.9), transparent);
-    z-index: 2;
+    z-index: 1;
     pointer-events: none;
   }
   
@@ -130,3 +98,22 @@ body, html {
     height: auto;
   }
   
+
+  .planes {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.planes img {
+  width: 30px;
+  height: auto;
+}
+
+/* CTM Logo in top right */
+.ctm-logo {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 120px;
+}

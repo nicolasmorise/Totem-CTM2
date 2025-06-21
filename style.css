@@ -1,4 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/monterchi-sans-trial');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 html {
     height: 100%;
@@ -22,7 +23,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Montserrat", sans-serif;
     background: linear-gradient(180deg, rgba(28,71,109,1) 0%, rgba(89,177,255,1) 100%);
     animation: fade-in 1s;
     width: 100%;
@@ -38,23 +39,20 @@ body img{
     clear: both;
 }
 svg path {
-    cursor: pointer;
-    transition: fill 0.3s;
-    fill: bisque;
+    fill: white;
+    cursor: default;
+    transition: fill 0.3s ease;
 }
 
-#countryTitle{
+.missoes-container #countryTitle {
+    width: 100%;
     text-align: center;
+    font-size: 1.8rem;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-#countryTitle span {
-    font-weight: normal;
-    font-style: italic;
-}
-
-svg path:hover {
-    fill: #FFD700 !important;
-}
 
 #modalOverlay {
   display: none;
@@ -86,6 +84,9 @@ svg path:hover {
 
 .missoes-container.show {
   display: flex;
+  flex-direction: column;
+  align-items: center; /* optional, to center horizontally */
+  gap: 1rem;
 }
 
 /* Mission list styling */
@@ -260,10 +261,10 @@ background: rgba(255, 255, 255, 0.4);
     left: 50%;
     transform: translateX(-50%);
 
-    font-family: 'Monterchi Sans Trial', sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: white;
     text-shadow: 1px 1px 2px black;
-    font-size: 3vw; /* responsive font size */
+    font-size: 2vw; /* responsive font size */
     margin: 0;
     text-align: center;
     max-width: 90%;
@@ -326,15 +327,6 @@ body{
 }
 
 
-svg path{
-    cursor: pointer;
-    fill: white;
-}
-
-svg path:hover{
-    fill:black;
-}
-
 #modal-content img#countryFlag {
   width: 120px;
   height: auto;
@@ -348,4 +340,153 @@ svg path:hover{
   max-width: 500px;
   font-size: 1rem;
   color: #333;
+}
+
+.language-buttons {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.language-buttons button {
+  padding: 10px 15px;
+  font-weight: bold;
+  font-family: 'Monterchi Sans Trial', sans-serif;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 91, 150, 0.9);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+svg path {
+  fill: #c2c2c2;
+}
+
+/* Using :is() selector (modern browsers) */
+svg path:is(
+    #br, #ar, #bo, #cl, #co, #cr, #do, #ec, #sv, #gt,
+    #jp, #hn, #mx, #ni, #pa, #py, #pe, #pr, #uy, #ve,
+    #pt, #mz, #gh, #ao, #gw, #cv, #za, #cg, #gb, #es
+) {
+    fill: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Hover effect */
+svg path:is(
+    #br, #ar, #bo, #cl, #co, #cr, #do, #ec, #sv, #gt,
+    #jp, #hn, #mx, #ni, #pa, #py, #pe, #pr, #uy, #ve,
+    #pt, #mz, #gh, #ao, #gw, #cv, #za, #cg, #gb, #es
+):hover {
+    fill: #ffe600;
+}
+
+/* Only SELECTED countries get initial fill and pointer cursor */
+g#br path,
+g#ar path,
+g#bo path,
+g#cl path,
+g#co path,
+g#cr path,
+g#do path,
+g#ec path,
+g#sv path,
+g#gt path,
+g#jp path,
+g#hn path,
+g#mx path,
+g#ni path,
+g#pa path,
+g#py path,
+g#pe path,
+g#pr path,
+g#uy path,
+g#ve path,
+g#pt path,
+g#mz path,
+g#gh path,
+g#ao path,
+g#gw path,
+g#cv path,
+g#za path,
+g#cg path,
+g#gb path,
+g#es path {
+    fill: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Hover effect for selected countries only */
+g#br:hover path,
+g#ar:hover path,
+g#bo:hover path,
+g#cl:hover path,
+g#co:hover path,
+g#cr:hover path,
+g#do:hover path,
+g#ec:hover path,
+g#sv:hover path,
+g#gt:hover path,
+g#jp:hover path,
+g#hn:hover path,
+g#mx:hover path,
+g#ni:hover path,
+g#pa:hover path,
+g#py:hover path,
+g#pe:hover path,
+g#pr:hover path,
+g#uy:hover path,
+g#ve:hover path,
+g#pt:hover path,
+g#mz:hover path,
+g#gh:hover path,
+g#ao:hover path,
+g#gw:hover path,
+g#cv:hover path,
+g#za:hover path,
+g#cg:hover path,
+g#gb:hover path,
+g#es:hover path {
+    fill: #ffe600;
+}
+
+
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 1.5rem;
+    display: none; /* Hidden by default */
+}
+
+.loading-spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
