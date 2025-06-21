@@ -38,15 +38,3 @@ All mission data is stored in local **JSON files**, enabling fast access and off
 ## 🏆 Impact
 
 This project improved internal engagement by giving missionaries quick and interactive access to mission info. It repurposed unused touchscreen TVs at the CTM, transforming them into informative kiosks and optimizing technology already available.
-
----
-
-### 📄 CV Project Summary (short version for Résumé)
-
-**Interactive Mission Kiosk App – Totem CTM2**  
-*HTML, CSS, JavaScript, JSON*  
-Developed a responsive, touch-friendly web app for interactive kiosks at the Missionary Training Center (CTM). The app enables missionaries to explore detailed information about their assigned missions using local JSON data. Solved an internal problem by repurposing unused touchscreen TVs and optimizing user experience with an offline-capable, multi-language interface.
-
----
-
-If you'd like to tailor either version for a more technical or business-focused audience (e.g. recruiters vs. engineers), I can adapt it accordingly.
