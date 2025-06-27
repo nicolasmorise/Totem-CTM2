@@ -3,21 +3,8 @@
 
 html {
     height: 100%;
+    font-size: clamp(16px, 1vw + 0.5rem, 22px); /* responsive font sizing */
 }
-
-/*KeyFrames*/
-
-@keyframes fade-in{
-    0%{
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 
 body {
     margin: 0;
@@ -29,8 +16,20 @@ body {
     width: 100%;
 }
 
+@keyframes fade-in {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
 
-body img{
+/* Wrapper for large displays */
+.wrapper {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+body img {
     width: 80px;
     height: 80px;
     padding: 15px;
@@ -38,13 +37,135 @@ body img{
     margin-right: 10px;
     clear: both;
 }
+
 svg path {
     fill: white;
     cursor: default;
     transition: fill 0.3s ease;
 }
 
-.missoes-container #countryTitle {
+/* --- Modal Container --- */
+#modalOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.missoes-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 900px; /* Aumentado de 900px */
+    max-height: 85vh;   /* Aumentado de 80vh */
+    background: #148a79;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    padding: 1.5rem; /* Adicionado padding */
+    overflow-y: auto;
+    color: white;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.missoes-container.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Ajustado o gap */
+}
+
+/* Mission List */
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Aumentado o gap */
+    width: 100%; /* Garantir que a caixa ocupe todo o espaço */
+}
+
+#missionsList {
+    display: grid;
+    /* Colunas com largura mínima maior */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.6rem; /* Aumentado o gap */
+    max-height: 50vh; /* Aumentada a altura máxima */
+    overflow-y: auto;
+    padding: 0.5rem; /* Aumentado o padding */
+    margin: 0;
+}
+
+#missionsList li {
+    list-style: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#missionsList li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+#missionsList a {
+    display: block;
+    padding: 1rem; /* Aumentado o padding */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem; /* Aumentado o tamanho da fonte */
+}
+
+#missionDetails {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem; /* Aumentado o padding */
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: left;
+    font-size: 0.9rem;
+    color: aliceblue;
+    font-size: medium; /* Aumentado o tamanho da fonte */
+}
+
+.mission-info {
+    flex: 2;
+    font-size: 0.8rem; /* Aumentado para melhor legibilidade */
+    line-height: 1.6;
+    overflow-y: auto;
+    max-height: 350px; /* Aumentada a altura máxima */
+    padding-right: 1rem; /* Aumentado o padding */
+    max-width: 70ch; /* Aumentada a largura máxima */
+}
+
+.mission-info strong {
+    color: #FFD700;
+}
+
+.mission-photo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mission-photo h2 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#missionphoto {
+    border-radius: 20px;
+    width: 280px; /* Aumentada a largura da imagem */
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+#countryTitle {
     width: 100%;
     text-align: center;
     font-size: 1.8rem;
@@ -53,412 +174,199 @@ svg path {
     margin-bottom: 1rem;
 }
 
-
-#modalOverlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-
-.missoes-container {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 900px;
-  max-height: 80vh;
-  background: #148a79;
-  border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  z-index: 1001;
-  padding: 2rem;
-  overflow-y: auto;
-  color: white;
-  flex-direction: row;
-  gap: 2rem;
-}
-
-.missoes-container.show {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* optional, to center horizontally */
-  gap: 1rem;
-}
-
-/* Mission list styling */
-.box {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
-
-#missionsList {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-gap: 0.8rem;
-max-height: 50vh;
-overflow-y: auto;
-padding: 0.5rem;
-margin: 0;
-}
-
-#missionsList li {
-list-style: none;
-background: rgba(255, 255, 255, 0.1);
-border-radius: 8px;
-transition: all 0.3s ease;
-}
-
-#missionsList li:hover {
-background: rgba(255, 255, 255, 0.2);
-transform: translateY(-2px);
-}
-
-#missionsList a {
-display: block;
-padding: 0.8rem;
-color: white;
-text-decoration: none;
-font-size: 0.95rem;
-}
-
-/* Mission details styling */
-#missionDetails {
-background: rgba(0, 0, 0, 0.2);
-padding: 1.2rem;
-border-radius: 10px;
-margin-bottom: 1rem;
-display: flex;
-justify-content: left;
-color: aliceblue;
-font-size: small;
-}
-
-
-.mission-info {
-  flex: 2;
-  font-size: 1rem;
-  line-height: 1.6;
-  overflow-y: auto;
-  max-height: 300px; /* or whatever height fits your layout */
-  padding-right: 0.5rem; /* optional: space so text doesn't go under scrollbar */
-}
-
-.mission-info strong {
-color: #FFD700;
-}
-
-.mission-photo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mission-photo h2{
-text-align: center;
-text-transform: uppercase;
-}
-
-#missionphoto {
-  border-radius: 20px;
-  width: 250px;
-  height: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Header styling */
-#countryTitle {
-margin: 0 0 1rem 0;
-font-size: 1.4rem;
-color: white;
-}
-
 #areaName {
-font-weight: normal;
-color: #FFD700;
+    font-weight: normal;
+    color: #FFD700;
 }
 
-/* Close button */
+/* Close Button */
 .close-btn {
-position: absolute;
-top: 15px;
-right: 15px;
-background: rgba(255, 255, 255, 0.2);
-border: none;
-width: 30px;
-height: 30px;
-border-radius: 50%;
-color: white;
-cursor: pointer;
-font-size: 16px;
-transition: all 0.3s ease;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .close-btn:hover {
-background: rgba(255, 255, 255, 0.3);
-transform: rotate(90deg);
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }
 
-/* Scrollbar styling */
+/* Scrollbar */
 ::-webkit-scrollbar {
-width: 8px;
+    width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-background: rgba(255, 255, 255, 0.1);
-border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb {
-background: rgba(255, 255, 255, 0.3);
-border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4);
 }
 
-
+/* SVG container */
 .container {
     position: relative;
     display: flex;
-    justify-content: center; /* Horizontal centering */
-    align-items: center;     /* Vertical centering */
-    height: 100vh;           /* Or any specific height */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-
 .container svg {
-    width:65%;
+    width: 65%;
     max-width: 80%;
 }
 
-
+/* MTC Photo */
 .mtc-photo {
     position: absolute;
     top: 75%;
     left: 5%;
-    width: 90%;       /* Responsive width of the container */
-    max-width: 700px; /* Prevents it from getting too large */
+    width: 90%;
+    max-width: 700px;
+    height: auto;
+}
+.mtc-photo img {
+    position: absolute;
+    width: 5vw;
     height: auto;
 }
 
-.mtc-photo img {
-    position: absolute;
-    width: 10vw;      /* Image takes up 100% of the container's width */
-    height: auto;     /* Maintains aspect ratio */
-      /* Removes inline spacing below image */
-}
-
-
+/* Text title */
 .text h1 {
     position: absolute;
     top: 4%;
     left: 50%;
     transform: translateX(-50%);
-
     font-family: "Montserrat", sans-serif;
     color: white;
     text-shadow: 1px 1px 2px black;
-    font-size: 2vw; /* responsive font size */
+    font-size: 2vw;
     margin: 0;
     text-align: center;
     max-width: 90%;
     line-height: 1.2;
 }
 
-
+/* Modal */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1002;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.6);
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
 }
-
 .modal-content {
   background-color: #fff;
-  margin: 10% auto;
-  padding: 2rem;
+  margin: 5% auto;
+  padding: clamp(2rem, 3vw, 5rem); /* Responsive padding */
   border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;;  /* Was 600–700px before */
+  border-radius: 15px;
   position: relative;
+  font-size: 1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 
 .close-modal {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  position: absolute;
-  right: 1rem;
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
   top: 1rem;
+  right: 1.5rem;
 }
+
 
 .close-modal:hover {
-  color: #000;
+    color: #000;
 }
 
+/* Button */
 .info-btn {
-  margin-top: 1rem;
-  background-color: #148a79;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
+    margin-top: 1rem;
+    background-color: #148a79;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-
-body{
-    background: rgb(28,71,109);
-    background: linear-gradient(180deg, rgba(28,71,109,1) 0%, rgba(89,177,255,1) 100%);
+/* Flag & Description */
+#modal-content img #countryFlag {
+    width: 600px;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
-
-
-#modal-content img#countryFlag {
-  width: 120px;
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
 #countryDescriptionText {
-  text-align: justify;
-  max-width: 500px;
-  font-size: 1rem;
-  color: #333;
+    text-align: justify;
+    max-width: 600px;
+    font-size: 1rem;
+    color: #333;
 }
 
+/* Language Switcher */
 .language-buttons {
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-
 .language-buttons button {
-  padding: 10px 15px;
-  font-weight: bold;
-  font-family: 'Monterchi Sans Trial', sans-serif;
-  border: none;
-  border-radius: 8px;
-  background-color: rgba(0, 91, 150, 0.9);
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-family: 'Monterchi Sans Trial', sans-serif;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(0, 91, 150, 0.9);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Interactive SVG paths */
 svg path {
-  fill: #c2c2c2;
+    fill: #c2c2c2;
 }
-
-/* Using :is() selector (modern browsers) */
-svg path:is(
-    #br, #ar, #bo, #cl, #co, #cr, #do, #ec, #sv, #gt,
-    #jp, #hn, #mx, #ni, #pa, #py, #pe, #pr, #uy, #ve,
-    #pt, #mz, #gh, #ao, #gw, #cv, #za, #cg, #gb, #es
-) {
+svg path:is(#br, #ar, #bo, #cl, #co, #cr, #do, #ec, #sv, #gt, #jp, #hn, #mx, #ni, #pa, #py, #pe, #pr, #uy, #ve, #pt, #mz, #gh, #ao, #gw, #cv, #za, #cg, #gb, #es) {
     fill: #f1f1f1;
     cursor: pointer;
 }
-
-/* Hover effect */
-svg path:is(
-    #br, #ar, #bo, #cl, #co, #cr, #do, #ec, #sv, #gt,
-    #jp, #hn, #mx, #ni, #pa, #py, #pe, #pr, #uy, #ve,
-    #pt, #mz, #gh, #ao, #gw, #cv, #za, #cg, #gb, #es
-):hover {
+svg path:is(#br, #ar, #bo, #cl, #co, #cr, #do, #ec, #sv, #gt, #jp, #hn, #mx, #ni, #pa, #py, #pe, #pr, #uy, #ve, #pt, #mz, #gh, #ao, #gw, #cv, #za, #cg, #gb, #es):hover {
     fill: #ffe600;
 }
 
-/* Only SELECTED countries get initial fill and pointer cursor */
-g#br path,
-g#ar path,
-g#bo path,
-g#cl path,
-g#co path,
-g#cr path,
-g#do path,
-g#ec path,
-g#sv path,
-g#gt path,
-g#jp path,
-g#hn path,
-g#mx path,
-g#ni path,
-g#pa path,
-g#py path,
-g#pe path,
-g#pr path,
-g#uy path,
-g#ve path,
-g#pt path,
-g#mz path,
-g#gh path,
-g#ao path,
-g#gw path,
-g#cv path,
-g#za path,
-g#cg path,
-g#gb path,
-g#es path {
+g#br path, g#ar path, g#bo path, g#cl path, g#co path, g#cr path, g#do path, g#ec path, g#sv path, g#gt path, g#jp path, g#hn path, g#mx path, g#ni path, g#pa path, g#py path, g#pe path, g#pr path, g#uy path, g#ve path, g#pt path, g#mz path, g#gh path, g#ao path, g#gw path, g#cv path, g#za path, g#cg path, g#gb path, g#es path {
     fill: #f1f1f1;
     cursor: pointer;
 }
-
-/* Hover effect for selected countries only */
-g#br:hover path,
-g#ar:hover path,
-g#bo:hover path,
-g#cl:hover path,
-g#co:hover path,
-g#cr:hover path,
-g#do:hover path,
-g#ec:hover path,
-g#sv:hover path,
-g#gt:hover path,
-g#jp:hover path,
-g#hn:hover path,
-g#mx:hover path,
-g#ni:hover path,
-g#pa:hover path,
-g#py:hover path,
-g#pe:hover path,
-g#pr:hover path,
-g#uy:hover path,
-g#ve:hover path,
-g#pt:hover path,
-g#mz:hover path,
-g#gh:hover path,
-g#ao:hover path,
-g#gw:hover path,
-g#cv:hover path,
-g#za:hover path,
-g#cg:hover path,
-g#gb:hover path,
-g#es:hover path {
+g#br:hover path, g#ar:hover path, g#bo:hover path, g#cl:hover path, g#co:hover path, g#cr:hover path, g#do:hover path, g#ec:hover path, g#sv:hover path, g#gt:hover path, g#jp:hover path, g#hn:hover path, g#mx:hover path, g#ni:hover path, g#pa:hover path, g#py:hover path, g#pe:hover path, g#pr:hover path, g#uy:hover path, g#ve:hover path, g#pt:hover path, g#mz:hover path, g#gh:hover path, g#ao:hover path, g#gw:hover path, g#cv:hover path, g#za:hover path, g#cg:hover path, g#gb:hover path, g#es:hover path {
     fill: #ffe600;
 }
 
-
-/* Loading Screen Styles */
+/* Loading Screen */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -473,9 +381,8 @@ g#es:hover path {
     z-index: 9999;
     color: white;
     font-size: 1.5rem;
-    display: none; /* Hidden by default */
+    display: none;
 }
-
 .loading-spinner {
     border: 5px solid #f3f3f3;
     border-top: 5px solid #3498db;
@@ -485,8 +392,70 @@ g#es:hover path {
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* --- 4K Media Query --- */
+@media (min-width: 2560px) {
+    html {
+        font-size: 24px; /* Aumentado */
+    }
+
+    .missoes-container {
+        max-width: 1800px; /* Aumentado */
+        max-height: 90vh;
+    }
+
+    .modal-content {
+      max-width: 1200px; /* Aumentado */
+      font-size: 1.5rem; /* Aumentado */
+      padding: 4rem;
+    }
+
+    #missionsList {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Aumentado */
+        max-height: 65vh; /* Aumentado */
+    }
+
+     #missionsList a{
+        font-size: 1.2rem; /* Aumentado */
+    }
+
+      #countryTitle {
+        font-size: 3rem; /* Aumentado */
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    #countryDescriptionText {
+    text-align: justify;
+    max-width: 1000px;
+    font-size: 1.8rem;
+    color: #333;
+    }
+
+    #areaName {
+        font-size: 2.2rem; /* Aumentado */
+    }
+
+    .text h1 {
+        font-size: 2.8vw; /* Ajustado */
+    }
+
+    .mission-info {
+        font-size: 1.4rem; /* Aumentado */
+    }
+
+    .language-buttons button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+    }
+
+    .mtc-photo img {
+      width: 10vw;
+      max-width: 600px;
+    }
+}
+

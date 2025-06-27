@@ -8,7 +8,7 @@ body, html {
     font-family: "Montserrat", sans-serif
   }
 
-  /* Style the container to fill the screen */
+/* Style the container to fill the screen */
 .video_container {
   position: fixed;
   top: 0;
@@ -28,7 +28,7 @@ body, html {
 }
 
 
-  #transitionVideo{
+#transitionVideo{
     position: fixed;
     right: 0;
     bottom: 0;
@@ -37,10 +37,10 @@ body, html {
     object-fit: cover;         /* Keeps aspect ratio and fills the container */
     object-position: center;   /* Focus on the center */
     z-index: -1; 
-  }
+}
 
   
-  .content {
+.content {
   position: absolute;
   top: 50%;
   left: 10%;
@@ -66,40 +66,39 @@ body, html {
   margin: 20px 0;
 }
 
-  .mainBtn {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-size: 3rem;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
+.mainBtn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-  .mainBtn:hover{
-    background-color: white;
-    color: black;
-  }
+.mainBtn:hover{
+  background-color: white;
+  color: black;
+}
   
-  .bottom-gradient {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70%;
-    background: linear-gradient(to top, rgba(28, 71, 109, 0.9), transparent);
-    z-index: 1;
-    pointer-events: none;
-  }
+.bottom-gradient {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, rgba(28, 71, 109, 0.9), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
   
-  .map-img {
-    width: 100%;
-    height: auto;
-  }
-  
+.map-img {
+  width: 100%;
+  height: auto;
+}
 
-  .planes {
+.planes {
   margin-top: 20px;
   display: flex;
   gap: 10px;
@@ -116,4 +115,38 @@ body, html {
   top: 30px;
   right: 40px;
   width: 120px;
+}
+
+
+/* ==========================================================================
+   MEDIA QUERY PARA TELAS 4K (3840px de largura ou mais) - Arquivo 1
+   ========================================================================== */
+@media (min-width: 3840px) {
+    .content {
+        left: 15%; /* Mais margem para não ficar colado na borda */
+    }
+
+    .content h1 {
+        font-size: 7em; /* Aumenta o tamanho da fonte principal */
+    }
+
+    .content h1.highlight {
+        font-size: 9em; /* Aumenta a fonte de destaque */
+    }
+
+    .content .sub {
+        font-size: 8em; /* Aumenta o subtítulo */
+    }
+
+    .mainBtn {
+        font-size: 5rem; /* Aumenta o botão */
+        padding: 24px 48px;
+        border-radius: 50px;
+    }
+
+    .ctm-logo {
+        width: 250px; /* Logo maior */
+        top: 60px;
+        right: 80px;
+    }
 }
